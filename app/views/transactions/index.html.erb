@@ -1,4 +1,32 @@
-<div>
-  <h1 class="font-bold text-4xl">Transactions#index</h1>
-  <p>Find me in app/views/transactions/index.html.erb</p>
+<div class="max-w-4xl mx-auto py-8 px-4">
+  <h1 class="text-3xl font-bold mb-6">Transactions</h1>
+
+  <div class="mb-4">
+    <%= link_to "Add Transaction", new_transaction_path, class: "bg-[#583be8] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
+  </div>
+
+  <table class="min-w-full bg-[#ffffff] shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-100 text-left text-sm font-semibold text-[#121212]">
+      <tr>
+        <th class="px-4 py-3">Date</th>
+        <th class="px-4 py-3">Type</th>
+        <th class="px-4 py-3">Amount</th>
+        <th class="px-4 py-3">Category</th>
+        <th class="px-4 py-3">Description</th>
+      </tr>
+    </thead>
+    <tbody class="text-[#121212] text-sm">
+      <% @transactions.each do |t| %>
+        <tr class="border-t">
+          <td class="px-4 py-2"><%= t.date %></td>
+          <td class="px-4 py-2 capitalize"><%= t.transaction_type %></td>
+          <td class="px-4 py-2 <%= t.transaction_type == 'expense' ? 'text-[#df3c27]' : 'text-[#33a34d]' %>">
+            <%= number_to_currency(t.amount) %>
+          </td>
+          <td class="px-4 py-2"><%= t.category.name %></td>
+          <td class="px-4 py-2"><%= t.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
