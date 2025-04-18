@@ -1,8 +1,9 @@
 class TransactionsController < ApplicationController
   def index
-    # First, we load everything (all the rows).
     @categories = Category.all
-    @transactions = Transaction.all.includes(:category, :user)
+
+    # We initialize the SQL Query including these parameters.
+    @transactions = Transaction.includes(:category, :user)
 
     # Then, we apply the filters if they are present in the URL.
     @transactions = @transactions.where(transaction_type: params[:type]) if params[:type].present?
