@@ -5,6 +5,29 @@
     <%= link_to "Add Transaction", new_transaction_path, class: "bg-[#583be8] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
   </div>
 
+  <!-- Filter Panel -->
+  <div class="mb-6">
+    <%= form_with url: transactions_path, method: :get, local: true, class: "flex flex-wrap gap-4 items-end" do |f| %>
+      
+      <div>
+        <%= f.label :type, "Type", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :type, [["All", ""], ["Income", "income"], ["Expense", "expense"]],
+            { selected: params[:type] }, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div>
+        <%= f.label :category_id, "Category", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.collection_select :category_id, @categories, :id, :name,
+            { include_blank: "All", selected: params[:category_id] }, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div>
+        <%= f.submit "Filter", class: "bg-[#583be8] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
+      </div>
+
+    <% end %>
+  </div>
+
   <table class="min-w-full bg-[#ffffff] shadow-md rounded-lg overflow-hidden">
     <thead class="bg-gray-100 text-left text-sm font-semibold text-[#121212]">
       <tr>
