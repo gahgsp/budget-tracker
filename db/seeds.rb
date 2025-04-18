@@ -9,7 +9,7 @@
 #   end
 user = User.create(email: "test@example.com")
 
-categories = %w[Food Rent Transport Entertainment]
+categories = %w[Food Rent Transport Entertainment Salary]
 categories.each { |name| Category.create(name: name) }
 
 Transaction.create!(
