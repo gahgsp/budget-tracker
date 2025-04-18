@@ -1,4 +1,43 @@
-<div>
-  <h1 class="font-bold text-4xl">Transactions#new</h1>
-  <p>Find me in app/views/transactions/new.html.erb</p>
+<div class="max-w-4xl mx-auto py-8 px-4">
+  <h1 class="text-3xl font-bold mb-6">New Transaction</h1>
+
+  <%= form_with model: @transaction do |form| %>
+    <div class="space-y-4">
+
+      <div>
+        <%= form.label :transaction_type, class: "block text-sm font-medium text-gray-700" %>
+        <%# This Select has a 2D array as value. The first index is the label, the second is the value. %>
+        <%= form.select :transaction_type, ["income", "expense"].map { |t| [t.capitalize, t] }, {}, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div>
+        <%= form.label :amount, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :amount, step: 0.01, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div>
+        <%= form.label :category_id, "Category", class: "block text-sm font-medium text-gray-700" %>
+        <%# [myEntity]_select is a built-in option from Rails. It helps creating a Select Component using a list of entities from the DB. %>
+        <%# :[myEntityField] defines which field from the entity the Form will hold as a value for this field. %>
+        <%# @[myEntity] tells Rails which collection are we using to populate the list. %>
+        <%# :[myEntityField], :[myEntityField] tells Rails which field is the value and which is the label. %>
+        <%= form.collection_select :category_id, @categories, :id, :name, {}, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div>
+        <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :description, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div>
+        <%= form.label :date, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.date_select :date, {}, class: "mt-1 block w-full" %>
+      </div>
+
+      <div>
+        <%= form.submit "Add", class: "bg-[#583be8] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
+      </div>
+
+    </div>
+  <% end %>
 </div>
