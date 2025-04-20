@@ -6,6 +6,10 @@ class TransactionsController < ApplicationController
       .includes(:category, :user)
       .filter_by_type(params[:type])
       .filter_by_category(params[:category_id])
+
+    @total_income = @transactions.income.sum(:amount)
+    @total_expense = @transactions.expense.sum(:amount)
+    @balance = @total_income - @total_expense
   end
 
   def new
