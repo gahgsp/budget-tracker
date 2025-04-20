@@ -17,6 +17,15 @@ Transaction.create!(
   category: Category.find_by(name: "Food"),
   amount: 25.50,
   description: "Lunch",
-  transaction_type: "expense",
+  transaction_type: 1,
+  date: Date.today
+)
+
+Transaction.create!(
+  user: user,
+  category: Category.find_by(name: "Salary"),
+  amount: 25.50,
+  description: "Monthly Salary",
+  transaction_type: 0,
   date: Date.today
 )
