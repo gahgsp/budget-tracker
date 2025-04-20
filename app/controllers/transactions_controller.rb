@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
 
     @total_income = @transactions.income.sum(:amount)
     @total_expense = @transactions.expense.sum(:amount)
-    @balance = @total_income - @total_expense
+    @total_balance = @total_income - @total_expense
   end
 
   def new
