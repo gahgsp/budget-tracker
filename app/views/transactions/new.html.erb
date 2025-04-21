@@ -10,9 +10,14 @@
         <%= form.select :transaction_type, ["income", "expense"].map { |t| [t.capitalize, t] }, {}, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
       </div>
 
-      <div>
+      <div class="form-group">
         <%= form.label :amount, class: "block text-sm font-medium text-gray-700" %>
         <%= form.number_field :amount, step: 0.01, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+        <% if @transaction.errors[:amount].any? %>
+          <p class="text-sm text-[#D83A3A]">
+            <%= @transaction.errors[:amount].join(", ") %>
+          </p>
+        <% end %>
       </div>
 
       <div>

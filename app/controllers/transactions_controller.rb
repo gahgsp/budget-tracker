@@ -19,11 +19,15 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.user = User.first # temporary hardcoded user
+    @transaction.user = User.first # This is temporary until we have user register.
+
     if @transaction.save
       redirect_to transactions_path
     else
-      render :new
+      # In case of error,
+      # we need to reload all the "Categories" so we can populate it's field in the Creation Form.
+      @categories = Category.all
+      render :new, status: :unprocessable_entity
     end
   end
 
