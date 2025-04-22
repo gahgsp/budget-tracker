@@ -6,6 +6,8 @@ class TransactionsController < ApplicationController
       .includes(:category, :user)
       .filter_by_type(params[:type])
       .filter_by_category(params[:category_id])
+      .from_date(params[:start_date])
+      .to_date(params[:end_date])
 
     @total_income = @transactions.income.sum(:amount)
     @total_expense = @transactions.expense.sum(:amount)

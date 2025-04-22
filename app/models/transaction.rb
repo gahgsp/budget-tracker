@@ -7,6 +7,8 @@ class Transaction < ApplicationRecord
   # "Scopes" are a way to extract commonly-used queries that can be called as functions.
   scope :filter_by_type, ->(type) { where(transaction_type: type) if type.present? }
   scope :filter_by_category, ->(category) { where(category_id: category) if category.present? }
+  scope :from_date, ->(date) { where("date >= ?", date) if date.present? }
+  scope :to_date, ->(date) { where("date <= ?", date) if date.present? }
 
   validates_with PositiveAmountValidator
 end
