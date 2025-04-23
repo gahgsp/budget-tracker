@@ -2,6 +2,9 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  has_many :transaction_tags, foreign_key: :trx_id, dependent: :destroy
+  has_many :tags, through: :transaction_tags
+
   enum :transaction_type, { income: 0, expense: 1 }
 
   # "Scopes" are a way to extract commonly-used queries that can be called as functions.

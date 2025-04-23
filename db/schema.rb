@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_20_162202) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_23_160607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,6 +18,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_20_162202) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transaction_tags", force: :cascade do |t|
+    t.bigint "trx_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_transaction_tags_on_tag_id"
+    t.index ["trx_id"], name: "index_transaction_tags_on_trx_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -39,6 +54,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_20_162202) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "transaction_tags", "tags"
+  add_foreign_key "transaction_tags", "transactions", column: "trx_id"
   add_foreign_key "transactions", "categories"
   add_foreign_key "transactions", "users"
 end
