@@ -3,6 +3,8 @@ class Transaction < ApplicationRecord
   belongs_to :category
 
   has_many :transaction_tags, foreign_key: :trx_id, dependent: :destroy
+  # Due to this "has_many", Rails already creates a getter / setter for the "tags" property.
+  # This way we can access this property directly from this Transaction entity.
   has_many :tags, through: :transaction_tags
 
   enum :transaction_type, { income: 0, expense: 1 }

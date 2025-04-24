@@ -24,7 +24,7 @@ class TransactionsController < ApplicationController
     @transaction.user = User.first # This is temporary until we have user register.
 
     if @transaction.save
-      # If all the Transaction is valid and we could save it, then we can create the related Tags.
+      # If the Transaction is valid and we could save it, then we can create the related Tags.
       associate_tags(@transaction, transaction_params[:tags])
       redirect_to transactions_path
     else
