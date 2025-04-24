@@ -23,6 +23,11 @@
   </head>
 
   <body>
+    <nav class="w-full h-16 bg-[#3B2A7B] text-white py-2 px-2">
+      <div class="flex justify-end items-center h-full">
+        <%= button_to "Log out", session_path, method: :delete, class: "text-white bg-transparent border border-white px-4 py-2 rounded hover:bg-white hover:text-[#3B2A7B] transition-colors" if authenticated? %>
+      </div>
+    </nav>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
