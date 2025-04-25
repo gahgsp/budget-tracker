@@ -20,14 +20,38 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# Importing Font Awesome to use their icons. %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   </head>
 
   <body>
-    <nav class="w-full h-16 bg-[#3B2A7B] text-white py-2 px-2">
-      <div class="flex justify-end items-center h-full">
-        <%= button_to "Log out", session_path, method: :delete, class: "text-white bg-transparent border border-white px-4 py-2 rounded hover:bg-white hover:text-[#3B2A7B] transition-colors" if authenticated? %>
+    <nav class="w-full h-16 bg-[#3B2A7B] text-white py-2 px-2 flex justify-end items-center">
+      <div class="relative mr-2">
+        <button id="languages_button">
+          <i class="fa fa-language fa-2xl"></i>
+        </button>
+        <div id="languages_options" class="hidden absolute right-0 mt-2 bg-white text-[#4C3C99] shadow-md">
+          <%# We use here "url_for" because it will override the URL parameters / hash while preserving the current URL. %>
+          <%= link_to "English", url_for(locale: :en), class: "block px-4 py-2 hover:bg-gray-100" %>
+          <%= link_to "日本語", url_for(locale: :jp), class: "block px-4 py-2 hover:bg-gray-100" %>
+        </div>
       </div>
+
+      <%= button_to "Log out", session_path, method: :delete, class: "text-white bg-transparent border border-white px-4 py-2 rounded hover:bg-white hover:text-[#3B2A7B] transition-colors" if authenticated? %>
     </nav>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("languages_button");
+        const dropdown = document.getElementById("languages_options");
+
+        btn.addEventListener("click", () => {
+          dropdown.classList.toggle("hidden");
+        });
+      });
+    </script>
+
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

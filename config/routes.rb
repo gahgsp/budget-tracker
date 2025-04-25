@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "transactions#index"
-  resources :transactions
+
+  # This adds a new optional parameter to the URL.
+  # () means it is an optional parameter. We can also define constraints to the parameters using RegExp.
+  # It is possible to concatenate multiple parameters: "(:locale)/:category", for example.
+  scope "(:locale)", constraints: { locale: /en|jp/ } do
+    resources :transactions
+    root "transactions#index"
+  end
 end

@@ -3,28 +3,28 @@
 
 <%= form_with url: session_path, class: "space-y-4 max-w-md mx-auto" do |form| %>
   <div>
-    <%= form.label :email_address, "Email Address", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :email_address, t("sessions.email_address_label"), class: "block text-sm font-medium text-gray-700" %>
     <%= form.email_field :email_address,
       required: true,
       autofocus: true,
       autocomplete: "username",
-      placeholder: "Enter your email address",
+      placeholder:t("sessions.email_address_label_placeholder"),
       value: params[:email_address],
       class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" %>
   </div>
 
   <div>
-    <%= form.label :password, "Password", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :password, t("sessions.password_label"), class: "block text-sm font-medium text-gray-700" %>
     <%= form.password_field :password,
       required: true,
       autocomplete: "current-password",
-      placeholder: "Enter your password",
+      placeholder: t("sessions.password_label_placeholder"),
       maxlength: 72,
       class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" %>
   </div>
 
   <div>
-    <%= form.submit "Sign in", class: "bg-[#3FBF3F] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
+    <%= form.submit t("sessions.sign_in_label"), class: "bg-[#3FBF3F] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
   </div>
 <% end %>
 <br>

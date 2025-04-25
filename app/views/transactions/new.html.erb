@@ -36,7 +36,8 @@
 
       <div>
         <%= form.label :date, class: "block text-sm font-medium text-gray-700" %>
-        <%= form.date_select :date, class: "mt-1 block w-full" %>
+        <%# As we are working with "locales" that handle Dates in a different way, "date_field" avoids many headaches about ISO formatting. %>
+        <%= form.date_field :date, class: "mt-1 block w-full" %>
       </div>
 
       <div>

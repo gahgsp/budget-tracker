@@ -27,10 +27,10 @@
 #       "yes": yup
 #       enabled: "ON"
 
-en:
+jp:
   sessions:
-    email_address_label: "Email Address"
-    email_address_label_placeholder: "Enter your Email Address"
-    password_label: "Password"
-    password_label_placeholder: "Enter your Password"
-    sign_in_label: "Sign In"
+    email_address_label: "メールアドレス"
+    email_address_label_placeholder: "メールアドレスを入力してください"
+    password_label: "パスワード"
+    password_label_placeholder: "パスワードを入力してください"
+    sign_in_label: "サイン"
