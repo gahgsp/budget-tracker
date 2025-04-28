@@ -3,7 +3,7 @@ require "test_helper"
 class TransactionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user1 = users(:one)
-    sign_in @user1
+    sign_in(@user1)
 
     @transaction1 = transactions(:one)
   end
