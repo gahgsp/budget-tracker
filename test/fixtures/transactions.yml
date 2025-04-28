@@ -5,7 +5,8 @@ one:
   category: one
   amount: 9.99
   description: MyString
-  transaction_type: MyString
+  # Even though "transaction_type" is an Integer in the DB, as we mapped it to String in the Model, we can use them here.
+  transaction_type: income
   date: 2025-04-14
 
 two:
@@ -13,5 +14,6 @@ two:
   category: two
   amount: 9.99
   description: MyString
-  transaction_type: MyString
+  # Even though "transaction_type" is an Integer in the DB, as we mapped it to String in the Model, we can use them here.
+  transaction_type: expense
   date: 2025-04-14
