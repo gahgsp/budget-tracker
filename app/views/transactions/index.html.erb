@@ -13,8 +13,7 @@
     <%= form_with url: transactions_path, method: :get, local: true, class: "flex flex-wrap gap-4 items-end" do |form| %>      
       <div>
         <%= form.label :type, "Type", class: "block text-sm font-medium text-gray-700" %>
-        <%= form.select :type, options_for_select(build_transaction_types_for_filter, params[:type]),
-            { selected: params[:type] }, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
+        <%= form.select :type, options_for_select(build_transaction_types_for_filter, params[:type]), {}, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
       </div>
 
       <div>
