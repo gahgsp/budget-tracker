@@ -1,8 +1,8 @@
 <div class="max-w-4xl mx-auto py-8 px-4">
-  <h1 class="text-3xl font-bold mb-6">Transactions</h1>
+  <h1 class="text-3xl font-bold mb-6"><%= t("transactions.transactions_label") %></h1>
 
   <div class="mb-4">
-    <%= link_to "Add Transaction", new_transaction_path, class: "bg-[#3FBF3F] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
+    <%= link_to t("transactions.add_transaction_label"), new_transaction_path, class: "bg-[#3FBF3F] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
   </div>
 
   <!-- Filter Panel -->
@@ -14,12 +14,12 @@
   <table class="min-w-full bg-[#ffffff] shadow-md rounded-lg overflow-hidden">
     <thead class="bg-gray-100 text-left text-sm font-semibold text-[#121212]">
       <tr>
-        <th class="px-4 py-3">Date</th>
-        <th class="px-4 py-3">Type</th>
-        <th class="px-4 py-3">Amount</th>
-        <th class="px-4 py-3">Category</th>
-        <th class="px-4 py-3">Description</th>
-        <th class="px-4 py-3">Tags</th>
+        <th class="px-4 py-3"><%= t("transactions.date_title") %></th>
+        <th class="px-4 py-3"><%= t("transactions.type_title") %></th>
+        <th class="px-4 py-3"><%= t("transactions.amount_title") %></th>
+        <th class="px-4 py-3"><%= t("transactions.category_title") %></th>
+        <th class="px-4 py-3"><%= t("transactions.description_title") %></th>
+        <th class="px-4 py-3"><%= t("transactions.tags_title") %></th>
       </tr>
     </thead>
     <tbody class="text-[#121212] text-sm">

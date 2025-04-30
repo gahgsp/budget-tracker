@@ -3,21 +3,21 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
   <!-- Income Card -->
   <div class="bg-[#3FBF3F] p-4 rounded-xl shadow-md text-white">
-    <h2 class="text-lg font-semibold">Total Income</h2>
+    <h2 class="text-lg font-semibold"><%= t("transactions.total_income_label") %></h2>
     <%# "number_with_precision" is a Rails helper to format numbers. %>
     <p class="text-2xl font-bold mt-2">+ $<%= number_with_precision(total_income, precision: 2) %></p>
   </div>
 
   <!-- Expenses Card -->
   <div class="bg-[#D83A3A] p-4 rounded-xl shadow-md text-white">
-    <h2 class="text-lg font-semibold">Total Expenses</h2>
+    <h2 class="text-lg font-semibold"><%= t("transactions.total_expense_label") %></h2>
     <%# "number_with_precision" is a Rails helper to format numbers. %>
     <p class="text-2xl font-bold mt-2">- $<%= number_with_precision(total_expense, precision: 2) %></p>
   </div>
 
   <!-- Balance Card -->
   <div class="bg-[#3B2A7B] p-4 rounded-xl shadow-md text-white">
-    <h2 class="text-lg font-semibold">Total Balance</h2>
+    <h2 class="text-lg font-semibold"><%= t("transactions.total_balance_label") %></h2>
     <%# "number_with_precision" is a Rails helper to format numbers. %>
     <p class="text-2xl font-bold mt-2">$<%= number_with_precision(total_balance, precision: 2) %></p>
   </div>
