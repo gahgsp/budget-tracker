@@ -20,6 +20,8 @@
         <th class="px-4 py-3"><%= t("transactions.category_title") %></th>
         <th class="px-4 py-3"><%= t("transactions.description_title") %></th>
         <th class="px-4 py-3"><%= t("transactions.tags_title") %></th>
+        <%# Empty Header for the Actions Column. %>
+        <th></th>
       </tr>
     </thead>
     <tbody class="text-[#121212] text-sm">
@@ -34,6 +36,9 @@
           <td class="px-4 py-2"><%= transaction.description %></td>
           <td class="px-4 py-2">
             <%= transaction.tags.map(&:name).join(", ") %>
+          </td>
+          <td class="px-4 py-2">
+            <%= link_to "View", transaction %>
           </td>
         </tr>
       <% end %>
