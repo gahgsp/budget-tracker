@@ -44,6 +44,11 @@
         <%= form.text_field :tags, value: @transaction.tags.map(&:name).join(","), class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
       </div>
 
+      <div>
+        <%= form.label :photo, "Photo", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.file_field :photo, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
+      </div>
+
       <div class="flex items-center justify-between">
         <%= form.submit "Add", class: "bg-[#3FBF3F] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
         <%= link_to "Cancel", transactions_path, class: "bg-[#F3C734] hover:filter hover:brightness-90 transition text-white px-4 py-2 h-10 rounded-md shadow" %>

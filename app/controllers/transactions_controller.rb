@@ -26,6 +26,7 @@ class TransactionsController < ApplicationController
     if @transaction.save
       # If the Transaction is valid and we could save it, then we can create the related Tags.
       associate_tags(@transaction, transaction_params[:tags])
+      attach_photo(@transaction, transaction_params[:photo])
       redirect_to transactions_path
     else
       # In case of error,
@@ -38,7 +39,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:category_id, :amount, :description, :transaction_type, :date, :tags)
+    params.require(:transaction).permit(:category_id, :amount, :description, :transaction_type, :date, :tags, :photo)
   end
 
   def associate_tags(transaction, tags_value)
@@ -52,5 +53,9 @@ class TransactionsController < ApplicationController
     end
 
     transaction.tags = saved_tags
+  end
+
+  def attach_photo(transaction, photo)
+    transaction.photo.attach(photo)
   end
 end
