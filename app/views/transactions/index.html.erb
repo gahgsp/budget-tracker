@@ -38,7 +38,7 @@
             <%= transaction.tags.map(&:name).join(", ") %>
           </td>
           <td class="px-4 py-2">
-            <%= link_to "View", transaction %>
+            <%= link_to "View", transaction, class: "bg-[#F3C734] hover:filter hover:brightness-90 transition text-white px-4 py-2 h-10 rounded-md shadow" %>
           </td>
         </tr>
       <% end %>
