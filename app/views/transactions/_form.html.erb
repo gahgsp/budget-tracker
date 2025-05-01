@@ -54,13 +54,12 @@
         <% end %>
       </div>
     <% end%>
-    
 
-    <% unless is_view_mode %>
-      <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between">
+      <% unless is_view_mode %>
         <%= form.submit "Add", class: "bg-[#3FBF3F] hover:filter hover:brightness-90 transition text-white px-4 py-2 rounded-md shadow" %>
-        <%= link_to "Cancel", transactions_path, class: "bg-[#F3C734] hover:filter hover:brightness-90 transition text-white px-4 py-2 h-10 rounded-md shadow" %>
-      </div>
-    <% end %>
+      <% end %>
+      <%= link_to (is_view_mode ? "Back" : "Cancel"), transactions_path, class: "bg-[#F3C734] hover:filter hover:brightness-90 transition text-white px-4 py-2 h-10 rounded-md shadow" %>
+    </div>
   </div>
 <% end %>
