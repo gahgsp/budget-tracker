@@ -44,15 +44,17 @@
       <%= form.text_field :tags, value: transaction.tags.map(&:name).join(","), disabled: is_view_mode, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
     </div>
 
-    <div>
-      <%= form.label :photo, "Photo", class: "block text-sm font-medium text-gray-700" %>
-      <% unless is_view_mode %>
-        <%= form.file_field :photo, disabled: is_view_mode, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
-      <% end %>
-      <% if is_view_mode %>
-        <%= image_tag transaction.photo if transaction.photo.attached? %>
-      <% end %>
-    </div>
+    <% if !is_view_mode || transaction.photo.attached? %>
+      <div>
+        <%= form.label :photo, "Photo", class: "block text-sm font-medium text-gray-700" %>
+        <% unless is_view_mode %>
+          <%= form.file_field :photo, disabled: is_view_mode, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2" %>
+        <% else %>
+          <%= image_tag transaction.photo if transaction.photo.attached? %>
+        <% end %>
+      </div>
+    <% end%>
+    
 
     <% unless is_view_mode %>
       <div class="flex items-center justify-between">
