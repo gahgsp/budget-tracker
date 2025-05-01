@@ -1,7 +1,8 @@
 class TransactionsController < ApplicationController
-  def index
-    @categories = Category.all
+  before_action :set_transaction, only: %i[ show edit update ]
+  before_action :load_categories
 
+  def index
     @transactions = Transaction
       .includes(:category, :user)
       .filter_by_type(params[:type])
@@ -16,7 +17,6 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @categories = Category.all
   end
 
   def create
@@ -37,8 +37,19 @@ class TransactionsController < ApplicationController
   end
 
   def show
-    @transaction = Transaction.find(params[:id])
-    @categories = Category.all
+  end
+
+  def edit
+  end
+
+  def update
+    if @transaction.update(transaction_params.except(:tags))
+      associate_tags(@transaction, transaction_params[:tags])
+      attach_photo(@transaction, transaction_params[:photo])
+      redirect_to @transaction
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -62,5 +73,13 @@ class TransactionsController < ApplicationController
 
   def attach_photo(transaction, photo)
     transaction.photo.attach(photo)
+  end
+
+  def set_transaction
+    @transaction = Transaction.find(params[:id])
+  end
+
+  def load_categories
+    @categories = Category.all
   end
 end
