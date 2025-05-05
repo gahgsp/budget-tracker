@@ -20,17 +20,10 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params.except(:tags))
-    @transaction.user = User.first # This is temporary until we have user register.
-
-    if @transaction.save
-      # If the Transaction is valid and we could save it, then we can create the related Tags.
-      associate_tags(@transaction, transaction_params[:tags])
-      attach_photo(@transaction, transaction_params[:photo])
+    creation_service = TransactionCreator.new(user: User.first, params: transaction_params)
+    if creation_service.create
       redirect_to transactions_path
     else
-      # In case of error,
-      # we need to reload all the "Categories" so we can populate it's field in the Creation Form.
       @categories = Category.all
       render :new, status: :unprocessable_entity
     end
