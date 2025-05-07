@@ -50,23 +50,6 @@ class TransactionsController < ApplicationController
     params.require(:transaction).permit(:category_id, :amount, :description, :transaction_type, :date, :tags, :photo)
   end
 
-  def associate_tags(transaction, tags_value)
-    # logger.debug "Tags: #{tags_value}"
-    return if tags_value.blank?
-
-    tags_to_save = tags_value.split(",").map(&:strip).uniq
-
-    saved_tags = tags_to_save.map do |name|
-      Tag.find_or_create_by(name: name)
-    end
-
-    transaction.tags = saved_tags
-  end
-
-  def attach_photo(transaction, photo)
-    transaction.photo.attach(photo)
-  end
-
   def set_transaction
     @transaction = Transaction.find(params[:id])
   end
