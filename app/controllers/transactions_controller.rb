@@ -36,9 +36,8 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    if @transaction.update(transaction_params.except(:tags))
-      associate_tags(@transaction, transaction_params[:tags])
-      attach_photo(@transaction, transaction_params[:photo])
+    update_service = TransactionUpdater.new(transaction: @transaction, params: transaction_params)
+    if update_service.update
       redirect_to @transaction
     else
       render :edit, status: :unprocessable_entity
