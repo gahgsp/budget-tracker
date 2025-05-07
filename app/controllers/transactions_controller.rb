@@ -24,7 +24,6 @@ class TransactionsController < ApplicationController
     if creation_service.create
       redirect_to transactions_path
     else
-      @categories = Category.all
       render :new, status: :unprocessable_entity
     end
   end
